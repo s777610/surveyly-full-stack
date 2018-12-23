@@ -5,6 +5,7 @@ const passport = require("passport"); // tell passport to keep track user authen
 const bodyParser = require("body-parser");
 const keys = require("./config/keys");
 require("./models/User"); // define users model first
+require("./models/Survey");
 require("./services/passport"); // then use users model
 
 mongoose.connect(
@@ -36,6 +37,7 @@ app.use(passport.session());
 // when we require authRoutes file, it returns a func which take app as arg
 require("./routes/authRoutes")(app);
 require("./routes/billingRoutes")(app);
+require("./routes/surveyRoutes")(app);
 
 // production
 if (process.env.NODE_ENV === "production") {
