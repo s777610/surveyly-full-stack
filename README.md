@@ -1,6 +1,6 @@
 # Surveyly-Full-Stack
 
-This application([Surveyly](https://github.com/s777610/surveyly-full-stack)) was mainly built by Node.js, React, Redux and MongoDB. The back-end was built by express, which is a light-weight framework of Node.js. The data is stored on MongoDB and hosted on mLab. The client-side of this application was built by React and Redux. I used create-react-app to set up my configuration and workflow. In addition, it uses redux-thunk as middleware for dispatching actions in order to make HTTP requests to express server properly.
+This application([Surveyly](https://protected-depths-22405.herokuapp.com/)) was mainly built by Node.js, React, Redux and MongoDB. The back-end was built by express, which is a light-weight framework of Node.js. The data is stored on MongoDB and hosted on mLab. The client-side of this application was built by React and Redux. I used create-react-app to set up my configuration and workflow. In addition, it uses redux-thunk as middleware for dispatching actions in order to make HTTP requests to express server properly.
 
 ## Functionality:
 
@@ -38,4 +38,62 @@ module.exports = {
   sendGridKey: process.env.SEND_GRID_KEY,
   redirectDomain: process.env.REDIRECT_DOMAIN
 };
+```
+
+## Architecture of Front-End
+
+```
+├── actions
+│   ├── index.js
+│   └── types.js
+├── components
+│   ├── App.js
+│   ├── Dashboard.js
+│   ├── Header.js
+│   ├── Landing.js
+│   ├── Payments.js
+│   └── surveys
+│       ├── SurveyField.js
+│       ├── SurveyForm.js
+│       ├── SurveyFormReview.js
+│       ├── SurveyList.js
+│       ├── formFields.js
+│       └── surveyNew.js
+├── index.js
+├── reducers
+│   ├── authReducer.js
+│   ├── index.js
+│   └── surveysReducer.js
+├── serviceWorker.js
+├── setupProxy.js
+└── utils
+    └── validateEmail.js
+```
+
+## Architecture of Back-End
+
+```
+├── config
+│   ├── dev.js
+│   ├── keys.js
+│   └── prod.js
+├── index.js
+├── middlewares
+│   ├── requireCredits.js
+│   └── requireLogin.js
+├── models
+│   ├── Recipient.js
+│   ├── Survey.js
+│   └── User.js
+├── package-lock.json
+├── package.json
+├── routes
+│   ├── authRoutes.js
+│   ├── billingRoutes.js
+│   └── surveyRoutes.js
+└── services
+    ├── Mailer.js
+    ├── emailTemplates
+    │   └── surveyTemplate.js
+    └── passport.js
 ```
