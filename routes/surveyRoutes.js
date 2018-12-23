@@ -70,7 +70,6 @@ module.exports = app => {
         ).exec(); // execute the query
       })
       .value();
-
     res.send({});
   });
 
