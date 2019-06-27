@@ -22,6 +22,7 @@ class SurveyForm extends Component {
       );
     });
   }
+
   render() {
     return (
       // as soon as we start typing on our keyboard reduxForm is
@@ -43,6 +44,7 @@ class SurveyForm extends Component {
 }
 
 // values is obj from form
+// errors.name should be matched with field name
 function validate(values) {
   const errors = {};
   errors.recipients = validateEmails(values.recipients || "");
@@ -52,8 +54,8 @@ function validate(values) {
       errors[name] = "You must provide a value";
     }
   });
-  // reduxForm automatically matches up errors to the different fields you're rendering.
-  return errors; // errors is obj
+  // reduxForm automatically matches up errors to the different fields you're rendering by comparing name and error.
+  return errors; // errors is obj, is errors is empty, redux-form will know it's okay
 }
 
 // reduxForm allows SurveyForm to communicate with the redux store

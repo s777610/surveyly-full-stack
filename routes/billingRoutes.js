@@ -9,7 +9,7 @@ module.exports = app => {
       amount: 500,
       currency: "usd",
       description: "$5 for 5 credits",
-      source: req.body.id
+      source: req.body.id // get token from react, id inside token is what we need
     });
 
     req.user.credits += 5;

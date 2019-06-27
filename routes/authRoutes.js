@@ -1,4 +1,4 @@
-const passport = require("passport"); // passport npm modules
+const passport = require("passport");
 
 module.exports = app => {
   // whenever users visit this endpoint, should be directed to authentication flow.

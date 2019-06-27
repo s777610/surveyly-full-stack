@@ -6,6 +6,7 @@ class SurveyList extends Component {
   componentDidMount() {
     this.props.fetchSurveys(); // call action creator to get resource from express
   }
+
   renderSurveys() {
     return this.props.surveys.reverse().map(survey => {
       return (
@@ -13,7 +14,7 @@ class SurveyList extends Component {
           <div className="card-content">
             <span className="card-title">{survey.title}</span>
             <p>{survey.body}</p>
-            <p class="right">
+            <p className="right">
               Sent On: {new Date(survey.dateSent).toLocaleDateString()}
             </p>
           </div>

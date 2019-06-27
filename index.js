@@ -1,26 +1,18 @@
 const express = require("express");
 const mongoose = require("mongoose");
 const cookieSession = require("cookie-session");
-const passport = require("passport"); // tell passport to keep track user authentucation state
+const passport = require("passport"); // tell passport to keep track user authentication state
 const bodyParser = require("body-parser");
 const keys = require("./config/keys");
 require("./models/User"); // define users model first
 require("./models/Survey");
 require("./services/passport"); // then use users model
 
-mongoose.connect(
-  keys.mongoURI,
-  { useNewUrlParser: true }
-);
+mongoose.connect(keys.mongoURI, { useNewUrlParser: true });
 
 const app = express();
 
 // cookieSession and Passport are middleware
-// middleware modify incoming requests
-// before they are sent to route handlers.
-
-// bodyParser is middleware,
-// any incoming requests' body will be assigned in req.body
 app.use(bodyParser.json());
 
 // cookieSession extract cookie data(token) from cookie and assign it to req.session
@@ -30,19 +22,18 @@ app.use(
     keys: [keys.cookieKey]
   })
 );
+
 // passport look for user.id(token) from req.session, then go deserializeUser
 app.use(passport.initialize());
 app.use(passport.session());
 
-// when we require authRoutes file, it returns a func which take app as arg
 require("./routes/authRoutes")(app);
 require("./routes/billingRoutes")(app);
 require("./routes/surveyRoutes")(app);
 
 // production
 if (process.env.NODE_ENV === "production") {
-  //express will serve up production asset
-  // like our main.js file, or main.css
+  // express will serve up production asset
   // if any get request comes in for some routes or some file,
   // but we do not understand what it's looking for(we do not already have a route handler).
   // look inside build directory and try to see if

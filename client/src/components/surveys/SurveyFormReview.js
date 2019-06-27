@@ -3,7 +3,7 @@ import React from "react";
 import { connect } from "react-redux";
 import formFields from "./formFields";
 import { withRouter } from "react-router-dom";
-import * as actions from "../../actions";
+import { submitSurvey } from "../../actions";
 
 // SurveyReview shows users their form input
 const SurveyFormReview = ({ onCancel, formValues, submitSurvey, history }) => {
@@ -44,5 +44,7 @@ function mapStateToProps(state) {
 
 export default connect(
   mapStateToProps,
-  actions // allow SurveyFormReview has actions as props
-)(withRouter(SurveyFormReview)); // withRouter allows SurveyFormReview know history obj
+  { submitSurvey }
+  // withRouter allows SurveyFormReview know history obj
+  // we need withRouter because SurveyFormReview don't know react-router
+)(withRouter(SurveyFormReview));
